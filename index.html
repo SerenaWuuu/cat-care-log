@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f0">
+  <meta name="description" content="Cat Care Log, a tiny local-first journal for the tiny ruler of your house. Log feedings, weight, vet visits and more.">
+  <title>Cat Care Log 🐱</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="avatar" id="avatar" title="Tap 7 times for a surprise">🐱</div>
+      <div class="header-text">
+        <h1 id="catName">Cat Care Log</h1>
+        <p class="date-line" id="dateLine"></p>
+      </div>
+      <div class="streak-pill" id="streakPill">🐾 start today</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- TODAY / QUICK LOG -->
+    <section class="tab-panel active" id="tab-today">
+      <div class="card">
+        <h2>🐾 Quick log <span class="sub">three taps, done</span></h2>
+        <div class="log-grid">
+          <button class="log-btn" id="logFeeding"><span class="e">🍽️</span>Feeding</button>
+          <button class="log-btn" id="logWater"><span class="e">💧</span>Water</button>
+          <button class="log-btn" id="logWeight"><span class="e">⚖️</span>Weight</button>
+          <button class="log-btn" id="logLitter"><span class="e">💩</span>Litter</button>
+          <button class="log-btn" id="logVet"><span class="e">🏥</span>Vet</button>
+          <button class="log-btn" id="logMed"><span class="e">💊</span>Meds</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📓 Today</h2>
+        <div id="todayList"></div>
+      </div>
+    </section>
+
+    <!-- TRENDS -->
+    <section class="tab-panel" id="tab-trends">
+      <div class="streak-banner" id="streakBanner">
+        <span class="flame">🔥</span>
+        <span class="num" id="streakNum">–</span>
+        <span class="txt" id="streakText"></span>
+      </div>
+
+      <div class="card">
+        <h2>⚖️ Weight trend</h2>
+        <div class="chart-box" id="weightChart"></div>
+      </div>
+
+      <div class="card">
+        <h2>🍽️ Meals per day <span class="sub">last 7 days</span></h2>
+        <div class="chart-box" id="feedingChart"></div>
+      </div>
+
+      <div class="card">
+        <h2>🗓️ This week</h2>
+        <div id="weekTimeline"></div>
+      </div>
+    </section>
+
+    <!-- CATS & DATA -->
+    <section class="tab-panel" id="tab-cats">
+      <div class="card">
+        <h2>🐈 Your cats</h2>
+        <div class="cat-chips" id="catChips"></div>
+      </div>
+
+      <div class="card" id="profileCard"></div>
+
+      <div class="card">
+        <h2>💾 Your data</h2>
+        <p class="hint">Everything lives in this browser only. Export a backup before you switch devices, or live dangerously.</p>
+        <div class="data-row">
+          <button class="btn btn-ghost" id="exportBtn">⬇️ Export JSON</button>
+          <button class="btn btn-ghost" id="importBtn">⬆️ Import JSON</button>
+          <input type="file" id="importInput" accept="application/json,.json" style="display:none">
+        </div>
+        <div class="danger-zone">
+          <h3>⚠️ Danger zone</h3>
+          <p class="hint">Permanently deletes every cat and every log on this device.</p>
+          <button class="btn btn-danger btn-block" id="wipeBtn">Delete all data</button>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="paw">🐾</div>
+        <p>Made with devotion for the tiny rulers of our houses.<br>
+        Open source (MIT): <a href="https://github.com/SerenaWuuu/cat-care-log">github.com/SerenaWuuu/cat-care-log</a></p>
+        <p>More from the lab: <a href="https://github.com/SerenaWuuu/Paws--friend-lab">Paws Friend Lab</a>, the cat and dog breed scanner.</p>
+      </footer>
+    </section>
+
+  </main>
+
+  <nav class="tab-bar">
+    <button data-tab="today" class="active"><span class="ticon">🐾</span>Log</button>
+    <button data-tab="trends"><span class="ticon">📊</span>Trends</button>
+    <button data-tab="cats"><span class="ticon">🐈</span>Cats</button>
+  </nav>
+
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true">
+    <div class="grab"></div>
+    <h2 id="sheetTitle"></h2>
+    <p class="sheet-sub" id="sheetSub"></p>
+    <div id="sheetBody"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <div class="purr-overlay" id="purrOverlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
